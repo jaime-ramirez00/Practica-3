@@ -1,0 +1,38 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+entity updowncounter_tb is
+end updowncounter_tb;
+
+architecture Behavioral of updowncounter_tb is
+
+component updown_counter 
+    Port ( clk: in std_logic; -- clock input
+           rst: in std_logic; -- reset input 
+     up_down: in std_logic; 
+           count: out std_logic_vector(3 downto 0) -- output 4-bit counter
+     );
+end component;
+signal rst,clk,up_down: std_logic;
+signal count:std_logic_vector(3 downto 0);
+
+begin
+dut: updown_counter port map (clk => clk, rst=>rst, up_down => up_down, count => count);
+clock_process :process
+begin
+     clk <= '0';
+     wait for 10 ns;
+     clk <= '1';
+     wait for 10 ns;
+end process;
+
+stim_proc: process
+begin        
+     rst <= '1';
+   up_down <= '0';
+    wait for 10 ns;    
+    rst <= '0';
+  wait for 150 ns;    
+  up_down <= '1';
+   wait;
+end process;
+end Behavioral;

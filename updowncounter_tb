@@ -5,7 +5,7 @@ end updowncounter_tb;
 
 architecture Behavioral of updowncounter_tb is
 
-component updown_counter 
+component updown 
     Port ( clk: in std_logic; -- clock input
            rst: in std_logic; -- reset input 
      up_down: in std_logic; 
@@ -16,7 +16,7 @@ signal rst,clk,up_down: std_logic;
 signal count:std_logic_vector(3 downto 0);
 
 begin
-dut: updown_counter port map (clk => clk, rst=>rst, up_down => up_down, count => count);
+dut: updown port map (clk => clk, rst=>rst, up_down => up_down, count => count);
 clock_process :process
 begin
      clk <= '0';
